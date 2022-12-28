@@ -1,9 +1,27 @@
-#keyboard-sec {
-  display: flex;
-  width: 400px;
-  flex-wrap: wrap;
+#keyboard-sec{
+  position: absolute;
+  top: 300px;
 }
 
-#keyboard-sec * {
-  width: 40px;
+.row {
+  display: flex;
+  width: 800px;
+  background-color: #67b49b;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.row * {
+  padding: 5px 15px;
+  width: fit-content;
+  height: 30px;
+  margin: 10px 0;
+  font-size: 23px;
+  background-color: #cf4ff2;
+}
+
+main {
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
