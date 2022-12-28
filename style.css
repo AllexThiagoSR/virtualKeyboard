@@ -20,8 +20,16 @@
   background-color: #cf4ff2;
 }
 
+.row *:hover {
+  cursor: pointer;
+}
+
 main {
   position: relative;
   display: flex;
   justify-content: center;
 }
+
+/* .row:nth-child(5) div:last-of-type {
+  background-color: black;
+} */
