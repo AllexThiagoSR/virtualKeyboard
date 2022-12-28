@@ -1,0 +1,9 @@
+#keyboard-sec {
+  display: flex;
+  width: 400px;
+  flex-wrap: wrap;
+}
+
+#keyboard-sec * {
+  width: 40px;
+}
