@@ -35,6 +35,7 @@ const caps = () => {
 
 const sKeys = {
   tab: () => textArea.value += '    ',
+  enter: () => textArea.value += '\n',
   caps,
 };
 
