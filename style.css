@@ -30,6 +30,6 @@ main {
   justify-content: center;
 }
 
-/* .row:nth-child(5) div:last-of-type {
-  background-color: black;
-} */
+.row:nth-child(5) div:last-of-type {
+  flex-grow: 0.9;
+}
