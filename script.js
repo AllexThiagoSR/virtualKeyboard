@@ -1,10 +1,12 @@
 const keyboard = document.getElementById('keyboard-sec');
 const textArea = document.getElementById('text');
-const row1 = [...'\'1234567890-=', 'backspace'];
-const row2 = ['tab', ...'qwertyuiop[]', '\\'];
-const row3 = ['caps', ...'asdfghjkl;:','enter'];
-const row4 = ['shift', ...'zxcvbnm,./', 'shift'];
-const row5 = ['.com', '@', ' '];
+const rows = [
+  [...'\'1234567890-=', 'backspace'],
+  ['tab', ...'qwertyuiop[]', '\\'],
+  ['caps', ...'asdfghjkl;:','enter'],
+  ['shift', ...'zxcvbnm,./', 'shift'],
+  ['.com', '@', ' ']
+];
 
 const upperChar = (key) => {
   key.innerText = key.innerText.toUpperCase();
@@ -35,10 +37,18 @@ const caps = () => {
 
 const regexMaker = (char) => new RegExp(`${char}$`);
 
+const removeLast = (text) => {
+  const splited = text.split('');
+  splited[splited.length - 1] = '';
+  return splited.join('');
+};
+
 const backspace = () => {
   const text = textArea.value;
-  const reg = regexMaker(text[text.length - 1]);
-  textArea.value = text.replace(reg, '');
+  const last = text[text.length - 1]
+  const reg = regexMaker(last);
+  if (last !== '\\') textArea.value = text.replace(reg, '') ;
+  else textArea.value = removeLast(text);
 };
 
 const sKeys = {
@@ -73,4 +83,4 @@ const creatSectionWKeys = (keys) => {
 
 const concatAllRows = (...rows) => rows.map(creatSectionWKeys);
 
-keyboard.replaceChildren(...concatAllRows(row1, row2, row3, row4, row5));
+keyboard.replaceChildren(...concatAllRows(...rows));
