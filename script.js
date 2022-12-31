@@ -26,13 +26,9 @@ const canUpper = (key) => {
 
 const caps = () => {
   const keys = document.querySelectorAll('.row div');
-  if (keys[15].value === 'q') {
-    for (const key of keys) {
-      canUpper(key);
-    }
-  } else {
-    lowerChars(keys);
-  }
+  
+  if (keys[15].value === 'q') for (const key of keys) canUpper(key);
+  else lowerChars(keys);
 };
 
 const regexMaker = (char) => new RegExp(`${char}$`);
@@ -58,9 +54,7 @@ const sKeys = {
   backspace,
 };
 
-const chooseSpecialKeyFunc = (text) => {
-  return sKeys[text];
-};
+const chooseSpecialKeyFunc = (text) => sKeys[text];
 
 const genericKeyEvent = (event) => textArea.value += event.target.value;
 
