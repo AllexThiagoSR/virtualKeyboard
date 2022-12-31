@@ -33,10 +33,19 @@ const caps = () => {
   }
 };
 
+const regexMaker = (char) => new RegExp(`${char}$`);
+
+const backspace = () => {
+  const text = textArea.value;
+  const reg = regexMaker(text[text.length - 1]);
+  textArea.value = text.replace(reg, '');
+};
+
 const sKeys = {
   tab: () => textArea.value += '    ',
   enter: () => textArea.value += '\n',
   caps,
+  backspace,
 };
 
 const chooseSpecialKeyFunc = (text) => {
