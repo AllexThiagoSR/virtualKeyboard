@@ -26,7 +26,7 @@ const canUpper = (key) => {
 
 const caps = () => {
   const keys = document.querySelectorAll('.row div');
-  
+
   if (keys[15].value === 'q') for (const key of keys) canUpper(key);
   else lowerChars(keys);
 };
@@ -64,6 +64,7 @@ const creatKey = (keyText) => {
   const key = document.createElement('div');
   key.innerText = keyText;
   key.value = keyText;
+  key.className = 'btn btn-dark';
   key.addEventListener('click', chooseFunction(keyText));
   return key;
 };

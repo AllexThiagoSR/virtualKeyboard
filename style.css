@@ -14,10 +14,9 @@
 .row * {
   padding: 5px 15px;
   width: fit-content;
-  height: 30px;
+  height: 45px;
   margin: 10px 0;
   font-size: 23px;
-  background-color: #cf4ff2;
 }
 
 .row *:hover {
