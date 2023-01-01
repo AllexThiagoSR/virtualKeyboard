@@ -8,6 +8,8 @@ const rows = [
   ['.com', '@', ' ']
 ];
 
+const filterCharKeys = (keys) => Array.from(keys).filter(({ innerText }) => innerText.length <= 1 && innerText !== ' ');
+
 const upperChar = (key) => {
   key.innerText = key.innerText.toUpperCase();
   key.value = key.value.toUpperCase();
@@ -25,9 +27,9 @@ const canUpper = (key) => {
 };
 
 const caps = () => {
-  const keys = document.querySelectorAll('.row div');
+  const keys = filterCharKeys(document.getElementsByClassName('key'));
 
-  if (keys[15].value === 'q') for (const key of keys) canUpper(key);
+  if (keys[13].value === 'q') for (const key of keys) canUpper(key);
   else lowerChars(keys);
 };
 
@@ -47,11 +49,24 @@ const backspace = () => {
   else textArea.value = removeLast(text);
 };
 
+const addClass = (elemen, clas) => {
+  if (elemen.innerText.length <= 1) elemen.classList.add(clas);
+};
+
+const removeClass = (el, c) => el.classList.remove(c);
+
+const shift = () => {
+  const keys = filterCharKeys(document.getElementsByClassName('key'));
+  if (keys[13].innerText === 'q') for (const key of keys) addClass(key, 'shifted');
+  else for (const key of keys) removeClass(key, 'shifted');
+};
+
 const sKeys = {
   tab: () => textArea.value += '    ',
   enter: () => textArea.value += '\n',
   caps,
   backspace,
+  shift,
 };
 
 const chooseSpecialKeyFunc = (text) => sKeys[text];
@@ -64,7 +79,7 @@ const creatKey = (keyText) => {
   const key = document.createElement('div');
   key.innerText = keyText;
   key.value = keyText;
-  key.className = 'btn btn-dark';
+  key.className = 'btn btn-dark key';
   key.addEventListener('click', chooseFunction(keyText));
   return key;
 };

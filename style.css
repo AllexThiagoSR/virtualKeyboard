@@ -11,7 +11,7 @@
   align-items: center;
 }
 
-.row * {
+.key {
   padding: 5px 15px;
   width: fit-content;
   height: 45px;
@@ -19,7 +19,7 @@
   font-size: 23px;
 }
 
-.row *:hover {
+.key:hover {
   cursor: pointer;
 }
 
@@ -31,4 +31,8 @@ main {
 
 .row:nth-child(5) div:last-of-type {
   flex-grow: 0.9;
+}
+
+.shifted {
+  text-transform: uppercase;
 }
