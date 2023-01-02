@@ -71,7 +71,14 @@ const sKeys = {
 
 const chooseSpecialKeyFunc = (text) => sKeys[text];
 
-const genericKeyEvent = (event) => textArea.value += event.target.value;
+const genericKeyEvent = (event) => {
+  const keyClicked = event.target;
+  if (Array.from(keyClicked.classList).includes('shifted')) {
+    textArea.value += keyClicked.innerText;
+    shift();
+  }
+  else textArea.value += keyClicked.value;
+};
 
 const chooseFunction = (text) => chooseSpecialKeyFunc(text) || genericKeyEvent;
 
