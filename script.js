@@ -8,29 +8,29 @@ const rows = [
   ['.com', '@', ' ']
 ];
 
-const filterCharKeys = (keys) => Array.from(keys).filter(({ innerText }) => innerText.length <= 1 && innerText !== ' ');
+const forEachKey = (keys, func) => {
+  for (const key of keys) func(key);
+};
+
+const filterCharKeys = (keys) =>
+  Array.from(keys).filter(({ innerText }) =>
+    innerText.match(/[a-z]/gi) && innerText !== ' ' && innerText.length <= 1);
 
 const upperChar = (key) => {
   key.innerText = key.innerText.toUpperCase();
   key.value = key.value.toUpperCase();
 };
 
-const lowerChars = (keys) => {
-  for (const key of keys) {
-    key.innerText = key.innerText.toLowerCase();
-    key.value = key.value.toLowerCase();
-  }
-};
-
-const canUpper = (key) => {
-  if (key.value.length <= 1) upperChar(key);
+const lowerChar = (key) => {
+  key.innerText = key.innerText.toLowerCase();
+  key.value = key.value.toLowerCase();
 };
 
 const caps = () => {
   const keys = filterCharKeys(document.getElementsByClassName('key'));
 
-  if (keys[13].value === 'q') for (const key of keys) canUpper(key);
-  else lowerChars(keys);
+  if (keys[0].value === 'q') forEachKey(keys, upperChar);
+  else forEachKey(keys, lowerChar);
 };
 
 const regexMaker = (char) => new RegExp(`${char}$`);
@@ -49,16 +49,16 @@ const backspace = () => {
   else textArea.value = removeLast(text);
 };
 
-const addClass = (elemen, clas) => {
-  if (elemen.innerText.length <= 1) elemen.classList.add(clas);
+const addShift = (elemen) => {
+  if (elemen.innerText.length <= 1) elemen.classList.add('shifted');
 };
 
-const removeClass = (el, c) => el.classList.remove(c);
+const removeShift = (el) => el.classList.remove('shifted');
 
 const shift = () => {
   const keys = filterCharKeys(document.getElementsByClassName('key'));
-  if (keys[13].innerText === 'q') for (const key of keys) addClass(key, 'shifted');
-  else for (const key of keys) removeClass(key, 'shifted');
+  if (keys[0].innerText === 'q') forEachKey(keys, addShift);
+  else forEachKey(keys, removeShift);
 };
 
 const sKeys = {
