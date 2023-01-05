@@ -1,4 +1,5 @@
-const keyboard = document.getElementById('keyboard-sec');
+const keyboard = document.createElement('section');
+keyboard.id = 'keyboard-sec';
 const textArea = document.getElementById('text');
 const rows = [
   [...'\'1234567890-=', 'backspace'],
@@ -101,3 +102,4 @@ const creatSectionWKeys = (keys) => {
 const concatAllRows = (...rows) => rows.map(creatSectionWKeys);
 
 keyboard.replaceChildren(...concatAllRows(...rows));
+document.querySelector('main').appendChild(keyboard);
