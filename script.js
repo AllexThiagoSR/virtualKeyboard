@@ -1,6 +1,6 @@
 const keyboard = document.createElement('section');
 keyboard.id = 'keyboard-sec';
-const textArea = document.getElementById('text');
+const input = document.getElementById('text');
 const rows = [
   [...'\'1234567890-=', 'backspace'],
   ['tab', ...'qwertyuiop[]', '\\'],
@@ -43,11 +43,11 @@ const removeLast = (text) => {
 };
 
 const backspace = () => {
-  const text = textArea.value;
+  const text = input.value;
   const last = text[text.length - 1]
   const reg = regexMaker(last);
-  if (last !== '\\') textArea.value = text.replace(reg, '') ;
-  else textArea.value = removeLast(text);
+  if (last !== '\\') input.value = text.replace(reg, '') ;
+  else input.value = removeLast(text);
 };
 
 const addShift = (elemen) => {
@@ -58,13 +58,14 @@ const removeShift = (el) => el.classList.remove('shifted');
 
 const shift = () => {
   const keys = filterCharKeys(document.getElementsByClassName('key'));
+  
   if (keys[0].innerText === 'q') forEachKey(keys, addShift);
   else forEachKey(keys, removeShift);
 };
 
 const sKeys = {
-  tab: () => textArea.value += '    ',
-  enter: () => textArea.value += '\n',
+  tab: () => input.value += '    ',
+  enter: () => input.value += '\n',
   caps,
   backspace,
   shift,
@@ -75,10 +76,10 @@ const chooseSpecialKeyFunc = (text) => sKeys[text];
 const genericKeyEvent = (event) => {
   const keyClicked = event.target;
   if (Array.from(keyClicked.classList).includes('shifted')) {
-    textArea.value += keyClicked.innerText;
+    input.value += keyClicked.innerText;
     shift();
   }
-  else textArea.value += keyClicked.value;
+  else input.value += keyClicked.value;
 };
 
 const chooseFunction = (text) => chooseSpecialKeyFunc(text) || genericKeyEvent;
