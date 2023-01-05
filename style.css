@@ -1,0 +1,45 @@
+#keyboard-sec{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 300px;
+  width: 830px;
+  height: 320px;
+  background-color: #67b49b;
+}
+
+.row {
+  display: flex;
+  width: 800px;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+.key {
+  padding: 5px 15px;
+  width: fit-content;
+  height: 45px;
+  margin: 10px 0;
+  font-size: 23px;
+}
+
+.key:hover {
+  cursor: pointer;
+}
+
+main {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.row:nth-child(5) div:last-of-type {
+  flex-grow: 0.9;
+}
+
+.shifted {
+  text-transform: uppercase;
+}
